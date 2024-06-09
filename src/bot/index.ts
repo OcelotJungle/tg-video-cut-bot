@@ -1,0 +1,1 @@
+export { VideoCutBot } from "./bot";

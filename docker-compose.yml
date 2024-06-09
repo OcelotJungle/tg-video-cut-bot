@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16.3-alpine3.20
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_DB=tg-video-cut-bot
+      - POSTGRES_USER=tg_video_cut_bot_user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - internal_network
+
+  bot:
+    build: .
+    container_name: bot
+    restart: always
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - YOUTUBE_TARGET_QUALITY=${YOUTUBE_TARGET_QUALITY}
+      - MAX_DURATION=${MAX_DURATION}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - db
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
+
+volumes:
+  postgres:

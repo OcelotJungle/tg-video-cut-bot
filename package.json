@@ -1,0 +1,38 @@
+{
+  "name": "tg-video-cut-bot",
+  "version": "1.0.0",
+  "main": "./src/app.ts",
+  "type": "module",
+  "scripts": {
+    "start": "node out/app.mjs",
+    "dev": "tsx --watch . --debug",
+    "production:generate-client": "prisma generate",
+    "production:migrate": "prisma migrate deploy",
+    "production:run": "node app.mjs --log-level=info",
+    "production:start": "npm run production:migrate && npm run production:run"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "dotenv": "^16.4.5",
+    "ffmpeg-static": "^5.2.0",
+    "get-file-object-from-local-path": "^1.0.2",
+    "gramio": "^0.0.38",
+    "prisma": "^5.14.0",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.8.0",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/express": "^4.17.21",
+    "@types/fluent-ffmpeg": "^2.1.24",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "tsup": "^8.0.2",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  }
+}
